@@ -1,4 +1,5 @@
 var express = require('express');
+const async = require('hbs/lib/async');
 const farmerHelpers = require('../helpers/farmer-helpers');
 var router = express.Router();
 var farmerHelper=require('../helpers/farmer-helpers');
@@ -13,26 +14,28 @@ router.get('/', function(req, res, next) {
 
 router.get('/milk', function(req, res, next) {
   smilkHelpers.getAllSmilks().then((smilks)=>{
-    res.render('society/view-milk', {smilks});
+    res.render('society/view-milk', {society:true,smilks});
   })
 });
 router.get('/add-farmer',function(req,res){
-  res.render('society/add-farmer')
+  res.render('society/add-farmer',{society:true})
 })
 
-router.get('/add-milk',function(req,res){
-  res.render('society/add-milk')
+router.get('/add-milk/:id',async (req,res)=>{
+  let farmer=await farmerHelpers.getFarmerDetails(req.params.id)
+  console.log(farmer);
+  res.render('society/add-milk',{society:true,farmer})
 })
 router.post('/add-farmer',(req,res)=>{
   console.log(req.body);
   farmerHelpers.addFarmer(req.body,(result)=>{
-    res.render('society/add-farmer')
+    res.render('society/add-farmer',{society:true})
   })
 })
 router.post('/add-milk',(req,res)=>{
   console.log(req.body);
   smilkHelpers.addSmilk(req.body,(result)=>{
-    res.render("society/add-milk")
+    res.render("society/add-milk",{society:true})
   })
 })
 
