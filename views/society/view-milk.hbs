@@ -1,0 +1,26 @@
+<section>
+    <div class="container">
+        <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Quality</th>
+      <th scope="col">SNF</th>
+      <th scope="col">Fat</th>
+    </tr>
+  </thead>
+  <tbody>
+      {{#each smilks}}
+    <tr>
+      <th scope="row">{{this.id}}</th>
+      <td>{{this.qty}}</td>
+      <td>{{this.qly}}</td>
+      <td>{{this.snf}}</td>
+      <td>{{this.fat}}</td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
+    </div>
+</section>
