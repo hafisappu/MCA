@@ -17,6 +17,11 @@ router.get('/milk', function(req, res, next) {
     res.render('society/view-milk', {society:true,smilks});
   })
 });
+
+router.get('/feedback', function(req, res) {
+  res.render('society/feedback', {society:true});
+})
+
 router.get('/add-farmer',function(req,res){
   res.render('society/add-farmer',{society:true})
 })
