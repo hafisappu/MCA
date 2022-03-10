@@ -15,5 +15,8 @@
     "mongodb": "^4.2.2",
     "morgan": "~1.9.1",
     "nodemon": "^2.0.15"
+  },
+  "devDependencies": {
+    "@types/hbs": "^4.0.1"
   }
 }

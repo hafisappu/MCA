@@ -14,14 +14,19 @@
 </head>
 
 <body>
+
+
     {{#if society}}
     {{>society-header}}
-    {{#if diary}}
-    {{>diary-header}}
     {{else}}
+    {{#if bmc}}
+    {{>bmc-header}}
+    {{else}}
+    {{>diary-header}}
+    {{/if}}
+    {{/if}}
+
     {{{body}}}
-    {{/if}}
-    {{/if}}
 
 
 
