@@ -4,8 +4,16 @@ const farmerHelpers = require('../helpers/farmer-helpers');
 var router = express.Router();
 var farmerHelper=require('../helpers/farmer-helpers');
 const smilkHelpers = require('../helpers/smilk-helpers');
-var smilkHelper=require('../helpers/smilk-helpers')
+var smilkHelper=require('../helpers/smilk-helpers');
+const societyHelpers = require('../helpers/society-helpers');
 /* GET home page. */
+router.get('/',(req,res)=>{
+  res.render('society/login',{society:true})
+})
+router.post('/login',(req,res)=>{
+  societyHelpers.doLogin(req.body)
+})
+
 router.get('/', function(req, res, next) {
   farmerHelpers.getAllFarmers().then((farmers)=>{
     res.render('society/farmers', {society:true,farmers});

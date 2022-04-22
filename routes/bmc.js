@@ -4,7 +4,8 @@ const societyHelpers = require('../helpers/society-helpers');
 var router = express.Router();
 var societyHelper=require('../helpers/society-helpers');
 const bmilkHelpers = require('../helpers/bmilk-helpers');
-var bmilkHelper=require('../helpers/bmilk-helpers')
+var bmilkHelper=require('../helpers/bmilk-helpers');
+const { response } = require('express');
 /* GET home page. */
 router.get('/', function(req, res, next) {
   societyHelpers.getAllSocieties().then((societies)=>{
