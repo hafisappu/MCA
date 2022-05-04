@@ -6,14 +6,6 @@ const { reject } = require('bcrypt/promises')
 const req = require('express/lib/request')
 module.exports={
 
-    // doSignup:(societyData)=>{
-    //     return new Promise(async(resolve,reject)=>{
-    //         societyData.Password=await bcrypt.hash(societyData.Password,10)
-    //         db.get().collection(collection.SOCIETY_COLLECTION).insertOne(societyData).then((data)=>{
-    //             resolve(data.ops[0])
-    //         })
-    //     })
-    // },
     doLogin: (userData)=>{
         return new Promise(async (resolve, reject)=>{
             let loginStatus=false
@@ -21,12 +13,17 @@ module.exports={
             let user=await db.get().collection(collection.SOCIETY_COLLECTION).findOne({id:userData.id})
             if(user){
                 if(userData.password === user.password){
-                    console. log("login success");
+                    console.log("login success");
+                    response.user=user
+                    response.status=true
+                    resolve(response)
                 }else{
-                    console. log('login failed');
+                    console.log('login failed');
+                    resolve({status:false})
                 }
             }else{
-                console.log("not");
+                console.log("invalid user");
+                resolve({status:false})
             }
         })
     },

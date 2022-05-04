@@ -6,7 +6,24 @@ var societyHelper=require('../helpers/society-helpers');
 const bmilkHelpers = require('../helpers/bmilk-helpers');
 var bmilkHelper=require('../helpers/bmilk-helpers');
 const { response } = require('express');
+const bmcHelpers = require('../helpers/bmc-helpers');
 /* GET home page. */
+router.get('/login',(req,res)=>{
+  res.render('bmc/login',{bmc:true})
+});
+
+router.post('/login',(req,res)=>{
+  bmcHelpers.doLogin(req.body).then((response)=>{
+    if(response.status){
+      req.session.loggedIn=true
+      req.session.user=response.user 
+      res.redirect('/')
+    }else{
+      res.redirect('/login')
+    }
+  })
+})
+
 router.get('/', function(req, res, next) {
   societyHelpers.getAllSocieties().then((societies)=>{
     res.render('bmc/societies', {bmc:true,societies});
